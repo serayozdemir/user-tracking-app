@@ -1,63 +1,77 @@
 from django.db import models
 
+class Geo(models.Model):
+    lat = models.CharField(max_length=50)
+    lng = models.CharField(max_length=50)
 
-from django.db.models import JSONField
+    def __str__(self):
+        return f"{self.lat}, {self.lng}"
+
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+    suite = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=20)
+    geo = models.OneToOneField(Geo, on_delete=models.CASCADE, related_name='address')
+
+    def __str__(self):
+        return f"{self.street}, {self.city}"
+
+class Company(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class User(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    username = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(unique=True)
-    address = JSONField()  # PostgreSQL'e özel JSON alanı
+    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
+    email = models.EmailField()
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='user')
     phone = models.CharField(max_length=50)
     website = models.URLField()
-    company = JSONField()
+    company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='user')
 
-    class Meta:
-        db_table = 'users'
+    def __str__(self):
+        return self.username
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=255)
     body = models.TextField()
 
-    class Meta:
-        db_table = 'posts'
+    def __str__(self):
+        return self.title
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     email = models.EmailField()
     body = models.TextField()
 
-    class Meta:
-        db_table = 'comments'
+    def __str__(self):
+        return f'Comment by {self.name}'
 
 class Album(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='albums')
-    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name='albums')
     title = models.CharField(max_length=255)
 
-    class Meta:
-        db_table = 'albums'
+    def __str__(self):
+        return self.title
 
 class Photo(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='photos')
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     url = models.URLField()
-    thumbnailUrl = models.URLField()
+    thumbnail_url = models.URLField()
 
-    class Meta:
-        db_table = 'photos'
+    def __str__(self):
+        return self.title
 
 class Todo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='todos')
-    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name='todos')
     title = models.CharField(max_length=255)
     completed = models.BooleanField(default=False)
 
-    class Meta:
-        db_table = 'todos'
+    def __str__(self):
+        return self.title

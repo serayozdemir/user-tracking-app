@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include 
-from django.shortcuts import redirect
 from . import views 
 
 urlpatterns = [
     # path('', lambda request: redirect('/tracking/')),
-    path('', views.example_view, name='example'),
+    # path('', views.example_view, name='example'),
     path('admin/', admin.site.urls),
-    path('tracking/', include('tracking.urls')),
+    path('', include('tracking.urls')),  # 🔥 API endpointleri buradan başlar
+
 ]
