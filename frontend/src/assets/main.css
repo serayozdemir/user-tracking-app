@@ -1,3 +1,30 @@
 ﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Tik işareti rengini mor yap (Tailwind purple-600) */
+input[type="checkbox"] {
+  accent-color: #9333ea;
+}
+
+/* Sayfanın genel yapısı - ortalama, daraltma yok */
+#app {
+  padding: 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  font-weight: normal;
+}
+
+/* Bağlantı stili */
+a {
+  text-decoration: none;
+  color: hsla(262, 83%, 58%, 1); /* mor ton */
+  transition: 0.4s;
+  padding: 3px;
+}
+
+a:hover {
+  background-color: hsla(262, 83%, 58%, 0.1);
+}
