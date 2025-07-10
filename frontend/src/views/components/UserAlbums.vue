@@ -1,10 +1,13 @@
 <template>
   <div>
-    <RouterLink to="/" class="inline-block mb-4 text-green-500 hover:underline">
+    <RouterLink
+      to="/"
+      class="inline-block mb-4 text-[#4F359B] hover:underline font-medium text-sm"
+    >
       ← Go Home
     </RouterLink>
 
-    <h1 class="text-xl font-bold mb-6 text-gray-800">Albums</h1>
+    <h1 class="text-xl font-bold mb-6 text-[#26303E]">Albums</h1>
 
     <div class="flex flex-wrap gap-6">
       <RouterLink
@@ -27,7 +30,7 @@
           </div>
         </div>
         <div class="mt-2 px-1">
-          <h3 class="text-sm font-medium text-gray-700 truncate">
+          <h3 class="text-sm font-medium text-[#5C6672] truncate">
             {{ album.title }}
           </h3>
         </div>

@@ -1,23 +1,26 @@
 <template>
   <div>
     <!-- Go Home -->
-    <RouterLink to="/" class="inline-block mb-4 text-green-500 hover:underline">
+    <RouterLink
+      to="/"
+      class="inline-block mb-4 text-[#4F359B] hover:underline text-sm font-medium"
+    >
       ← Go Home
     </RouterLink>
 
-    <h1 class="text-xl font-bold mb-6 text-gray-800">Posts</h1>
+    <h1 class="text-xl font-bold mb-6 text-[#26303E]">Posts</h1>
 
     <div class="space-y-4 max-w-4xl mx-auto">
       <div
         v-for="post in posts"
         :key="post.id"
-        class="border rounded-lg shadow-sm px-6 py-4 bg-white hover:shadow-md transition-all duration-200"
+        class="border border-[#D8D9DD] rounded-lg shadow-sm px-6 py-4 bg-white hover:shadow-md transition-all duration-200"
       >
-        <h3 class="font-semibold text-lg text-purple-800 mb-2 truncate">{{ post.title }}</h3>
-        <p class="text-sm text-gray-600 mb-3">{{ post.body }}</p>
+        <h3 class="font-semibold text-lg text-[#4F359B] mb-2 truncate">{{ post.title }}</h3>
+        <p class="text-sm text-[#5C6672] mb-3">{{ post.body }}</p>
         <button
           @click="openModal(post)"
-          class="text-purple-600 text-sm flex items-center gap-1 hover:underline"
+          class="text-[#4F359B] text-sm flex items-center gap-1 hover:underline"
         >
           See More <i class="fas fa-arrow-circle-right"></i>
         </button>

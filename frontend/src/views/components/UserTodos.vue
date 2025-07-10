@@ -3,13 +3,13 @@
     <!-- Go Home -->
     <router-link
       to="/"
-      class="text-sm text-gray-600 hover:text-purple-600 font-medium inline-block mb-6"
+      class="text-sm text-muted hover:text-primary font-medium inline-block mb-6"
     >
       ← Go Home
     </router-link>
 
     <!-- Başlık -->
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Todo List</h2>
+    <h2 class="text-2xl font-bold mb-6 text-dark">Todo List</h2>
 
     <!-- Liste -->
     <ul class="space-y-4">
@@ -18,7 +18,7 @@
         :key="todo.id"
         class="flex items-start gap-3"
       >
-        <!-- Custom checkbox -->
+        <!-- Küçük ve şık checkbox -->
         <div class="relative">
           <input
             type="checkbox"
@@ -29,13 +29,13 @@
           />
           <label
             :for="'todo-' + todo.id"
-            class="w-5 h-5 border-2 border-purple-600 rounded-sm flex items-center justify-center cursor-default
-                   peer-checked:bg-purple-600 peer-checked:text-white"
+            class="w-5 h-5 border-2 border-primary rounded-sm flex items-center justify-center cursor-default
+                   peer-checked:bg-primary peer-checked:text-white"
           >
             <svg
               v-if="todo.completed"
               xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4"
+              class="w-[13px] h-[13px]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Metin -->
-        <span class="text-gray-800 text-base">
+        <span class="text-dark text-base">
           {{ todo.title }}
         </span>
       </li>
@@ -80,7 +80,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* Gerekirse ekstra stil buraya */
-</style>
